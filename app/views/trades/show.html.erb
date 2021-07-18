@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Trade type:</strong>
+  <%= @trade.trade_type %>
+</p>
+
+<p>
+  <strong>Symbol:</strong>
+  <%= @trade.symbol %>
+</p>
+
+<p>
+  <strong>Open price:</strong>
+  <%= @trade.open_price %>
+</p>
+
+<p>
+  <strong>Close price:</strong>
+  <%= @trade.close_price %>
+</p>
+
+<p>
+  <strong>Open date:</strong>
+  <%= @trade.open_date %>
+</p>
+
+<p>
+  <strong>Close date:</strong>
+  <%= @trade.close_date %>
+</p>
+
+<%= link_to 'Edit', edit_trade_path(@trade) %> |
+<%= link_to 'Back', trades_path %>
