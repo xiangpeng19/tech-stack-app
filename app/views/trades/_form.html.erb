@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :trade_type %>
-    <%= form.text_field :trade_type %>
+  <div class="field form-group">
+    <%= form.label :trade_type, "Call/Put" %>
+    <%= form.text_field :trade_type, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :symbol %>
-    <%= form.text_field :symbol %>
+    <%= form.text_field :symbol, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :open_price %>
-    <%= form.text_field :open_price %>
+    <%= form.text_field :open_price, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :close_price %>
-    <%= form.text_field :close_price %>
+    <%= form.text_field :close_price, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :open_date %>
     <%= form.datetime_select :open_date %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :close_date %>
     <%= form.datetime_select :close_date %>
   </div>

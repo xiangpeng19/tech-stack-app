@@ -28,6 +28,12 @@ gem 'jbuilder', '~> 2.7'
 # auth system
 gem 'devise'
 
+# http client
+gem 'faraday'
+
+# finnhub finance api
+gem 'finnhub_ruby'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

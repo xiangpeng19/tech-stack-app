@@ -1,6 +1,6 @@
 class TradesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_trade, only: %i[ show edit update destroy ]
+  before_action :set_trade, only: %i[ show edit update destroy close ]
 
   # GET /trades or /trades.json
   def index
@@ -18,6 +18,22 @@ class TradesController < ApplicationController
 
   # GET /trades/1/edit
   def edit
+  end
+
+  # GET /trades/1/close
+  # close this position
+  def close
+    @trade.close_date = now
+    respond_to do |format|
+      if @trade.save
+        format.html { redirect_to @trade, notice: "This position was successfully closed." }
+        format.json { render :show, status: :created, location: @trade }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @trade.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   # POST /trades or /trades.json
@@ -58,14 +74,19 @@ class TradesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_trade
-      @trade = Trade.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def trade_params
-      params.require(:trade).permit(:trade_type, :symbol, :open_price, :close_price, :open_date, :close_date)
-            .merge(user_id: current_user.id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_trade
+    @trade = Trade.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def trade_params
+    params.require(:trade).permit(:trade_type, :symbol, :open_price, :close_price, :open_date, :close_date)
+          .merge(user_id: current_user.id)
+  end
+
+  def now
+    DateTime.now
+  end
 end
