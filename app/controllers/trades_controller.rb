@@ -1,9 +1,10 @@
 class TradesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_trade, only: %i[ show edit update destroy ]
 
   # GET /trades or /trades.json
   def index
-    @trades = Trade.all
+    @trades = Trade.where(user_id: current_user.id)
   end
 
   # GET /trades/1 or /trades/1.json
@@ -65,5 +66,6 @@ class TradesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def trade_params
       params.require(:trade).permit(:trade_type, :symbol, :open_price, :close_price, :open_date, :close_date)
+            .merge(user_id: current_user.id)
     end
 end
